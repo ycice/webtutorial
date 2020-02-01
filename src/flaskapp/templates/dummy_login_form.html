@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    ​
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    ​
+    <title>더미 로그인</title>
+</head>
+
+<body>
+
+​
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <form method="post" action="" enctype="multipart/form-data">
+                {# file보낼 때는 enctype을 추가해서 멀티파트로 해준다 #}
+                {# form태그를 써야 아이디, 비번 입력 등을 받을 수 있음. action에 쓴 주소로 입력받은 정보를 보냄.
+                method에 post인지 get인지 작성. action값을 비워두면 자기 자신에게 보냄 #}
+                <div class="form-group">
+                    <label for="input_id">ID</label>
+                    <input type="text" class="form-control" id="input_id"
+                           name="id">
+                </div>
+                <div class="form-group">
+                    <label for="input_password">비밀번호</label>
+                    <input type="password" class="form-control" id="input_password"
+                           name="password">
+                </div>
+                 <div class="form-group">
+                    <label for="input_img">파일명</label>
+                    <input type="file" class="form-control" id="input_img" name="image">
+                     {# 파일을 올릴 수 있게 하려면 input에서 file 타입을 추가해야한다. #}
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+                {# submit할 때 form태그 안에 있는 건 같이 보내진다 #}
+
+            </form>
+        </div>
+    </div>
+</div>
+​
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

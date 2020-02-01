@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    ​
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    ​
+    <title>starbusk 피지오</title>
+</head>
+
+<body>
+<style type="text/css">
+    .menue_img img {
+        width: 100%;
+    }
+
+    .menue_name {
+        text-align: center;
+    }
+</style>
+​
+<div class="container">
+    <div class="row">
+        <div class="col-12">스타벅스 피지오</div>
+    </div>
+    <div class="row">
+        {% for menue in STARBUCKS_MEUS %}
+            <!-- for문 사용-->
+            <!-- render_template에서 스타벅스 메뉴를 집어넣어줘서 이용가능함 -->
+            <div class="col-md-3 col-12">
+                <div class="row">
+                    <div class="col-12 menue_img">
+                        <a href="/drinks/{{ menue.product_cd }}">
+                        <!-- 중괄호 2개는 flask에서 인식해서 변수취급함-->
+                            <img src="/static/img_star/{{ menue.product_cd }}.jpg"/>
+                        </a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 menue_name">{{ menue.menue_name }}</div>
+                </div>
+            </div>
+        {% endfor %}  <!-- for문을 반드시 닫아줘야함-->
+    </div>
+</div>
+​
+​
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
