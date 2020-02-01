@@ -4,10 +4,10 @@ from PIL import Image
 
 def find_face():
     STATIC_DIR = os.path.join(os.path.dirname(__file__), 'static')
-    Naver_url = "https://openapi.naver.com/v1/vision/face"
+    naver_url = "https://openapi.naver.com/v1/vision/face"
     headers = {'X-Naver-Client-Id': '552ZS6v_QNFGoGORaPaD', 'X-Naver-Client-Secret': 'aLtCyh2VbL'}
     files = {'image': open(os.path.join(STATIC_DIR, 'dummy_img.jpg'), 'rb')}
-    response = requests.post(url=Naver_url, files=files, headers=headers)
+    response = requests.post(url=naver_url, files=files, headers=headers)
     assert response.status_code // 100 == 2
     people_info = response.json()['faces']
     img: Image.Image = Image.open(os.path.join(STATIC_DIR, 'dummy_img.jpg'))
