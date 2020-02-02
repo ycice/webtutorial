@@ -17,10 +17,12 @@ def find_face(file_name):
     img: Image.Image = Image.open(os.path.join(USER_IMG_DIR, f'{file_name}.jpg'))
 
     your_face_info_list = []
+    order = 0
     for person in people_info:
         face_dict = {}
+        face_dict['order'] = order
         (x, y, w, h) = person['roi'].values()
-        shape = (x - 0.33 * w, y - 0.33 * h, x + 1.33 * w, y + 1.33 * h)
+        shape = (x, y, x + w, y + h)
         face_img = img.crop(shape)
         face_resized = face_img.resize((400, 400), resample=4)
 
@@ -29,5 +31,6 @@ def find_face(file_name):
         face_dict['file_name'] = uuid_filename
         face_resized.save(os.path.join(USER_IMG_DIR, f'face_{uuid_filename}.jpg'))
         your_face_info_list.append(face_dict)
+        order += 1
 
     return your_face_info_list
