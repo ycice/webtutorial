@@ -1,4 +1,6 @@
-import requests, os
+import os
+import requests
+from uuid import uuid4
 from PIL import Image
 
 
@@ -14,14 +16,16 @@ def find_face():
 
     people_info = response.json()['faces']
     img: Image.Image = Image.open(os.path.join(STATIC_DIR, 'dummy_img.jpg'))
-    
-    num = 0
+
+    uuid_filenames = []
     for person in people_info:
-        num += 1
         (x, y, w, h) = person['roi'].values()
         shape = (x - 0.33 * w, y - 0.33 * h, x + 1.33 * w, y + 1.33 * h)
         face_img = img.crop(shape)
         face_resized = face_img.resize((400, 400), resample=4)
-        face_resized.save(os.path.join(STATIC_DIR, f'face_{num}.jpg'))
 
-    return len(people_info)
+        uuid_filename = str(uuid4())
+        face_resized.save(os.path.join(STATIC_DIR, f'face_{uuid_filename}.jpg'))
+        uuid_filenames.append(uuid_filename)
+
+    return uuid_filenames
