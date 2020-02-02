@@ -7,7 +7,6 @@ from flaskapp_face.face_outline import find_face
 from flaskapp_face import app
 
 
-
 @app.route('/face/main')
 def img_upload():
     return render_template('img_upload.html')
