@@ -23,8 +23,7 @@ def img_request():
     img: Image.Image = Image.open(img_io)
     img.save(os.path.join(STATIC_DIR, 'dummy_img.jpg'))
 
-    face_count = find_face()
-    count_list = range(1, face_count+1)
-    return render_template('img_show.html', count_list=count_list)
+    uuid_filenames = find_face()
+    return render_template('img_show.html', uuid_filenames=uuid_filenames)
 
     # files = {'image': open(img_io, 'rb')}

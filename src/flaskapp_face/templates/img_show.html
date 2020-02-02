@@ -14,12 +14,12 @@
 <body>
 <div class="container">
     <div class="row">
-        {% for i in count_list %}
+        {% for uuid_filename in uuid_filenames %}
             <div class="col-4">
-                <img src="/static/face_{{i}}.jpg" style="width: 300px;"/>
+                <img src="/static/face_{{uuid_filename}}.jpg" style="width: 300px;"/>
             </div>
             <div class="col-8">
-                <a href="/static/face_{{i}}.jpg" download>
+                <a href="/static/face_{{uuid_filename}}.jpg" download>
                     <button type="button" class="btn btn-primary">download</button>
                 </a>
             </div>
