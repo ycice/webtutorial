@@ -14,16 +14,22 @@
 <body>
 <div class="container">
     <div class="row">
-        {% for uuid_filename in uuid_filenames %}
+        <form method="POST" action="/face/tag_name">
+            {% for person in your_face_info_list %}
             <div class="col-4">
-                <img src="/face/face_{{uuid_filename}}.jpg" style="width: 300px;"/>
+                <img src="/face/face_{{ person['file_name'] }}.jpg" style="width: 300px;"/>
             </div>
             <div class="col-8">
-                <a href="/face/face_{{uuid_filename}}.jpg" download>
-                    <button type="button" class="btn btn-primary">download</button>
-                </a>
+                <div class="form-group">
+                    <label for="input_name">이름을 입력하세요</label>
+                    <input type="text" class="form-control" id="input_name"
+                           name="name">
+                </div>
             </div>
-        {% endfor %}
+            <input type="hidden" value="{{ person['shape'] }}" name="shape"  readonly>
+            {% endfor %}
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
     </div>
 </div>
 
