@@ -4,18 +4,18 @@ from uuid import uuid4
 from PIL import Image
 
 
-def find_face():
+def find_face(file_name):
     STATIC_DIR = os.path.join(os.path.dirname(__file__), 'static')
 
     naver_url = "https://openapi.naver.com/v1/vision/face"
     headers = {'X-Naver-Client-Id': '552ZS6v_QNFGoGORaPaD', 'X-Naver-Client-Secret': 'aLtCyh2VbL'}
-    files = {'image': open(os.path.join(STATIC_DIR, 'dummy_img.jpg'), 'rb')}
+    files = {'image': open(os.path.join(STATIC_DIR, f'{file_name}.jpg'), 'rb')}
 
     response = requests.post(url=naver_url, files=files, headers=headers)
     assert response.status_code // 100 == 2
 
     people_info = response.json()['faces']
-    img: Image.Image = Image.open(os.path.join(STATIC_DIR, 'dummy_img.jpg'))
+    img: Image.Image = Image.open(os.path.join(STATIC_DIR, f'{file_name}.jpg'))
 
     uuid_filenames = []
     for person in people_info:

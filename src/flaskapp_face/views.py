@@ -1,4 +1,6 @@
-import io, os, requests
+import io
+import os
+from uuid import uuid4
 from flask import render_template, request, abort
 from PIL import Image
 from flaskapp_face.face_outline import find_face
@@ -21,9 +23,10 @@ def img_request():
     STATIC_DIR = os.path.join(os.path.dirname(__file__), 'static')
     img_io = io.BytesIO(img_dict['image'].read())
     img: Image.Image = Image.open(img_io)
-    img.save(os.path.join(STATIC_DIR, 'dummy_img.jpg'))
+    unique_dummy_name = str(uuid4())
+    img.save(os.path.join(STATIC_DIR, f'{unique_dummy_name}.jpg'))
 
-    uuid_filenames = find_face()
+    uuid_filenames = find_face(unique_dummy_name)
     return render_template('img_show.html', uuid_filenames=uuid_filenames)
 
     # files = {'image': open(img_io, 'rb')}
