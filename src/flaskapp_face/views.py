@@ -1,10 +1,21 @@
 import io
 import os
 from uuid import uuid4
-from flask import render_template, request, abort
+from flask import render_template, request, abort, send_file
+from werkzeug.utils import secure_filename
 from PIL import Image
+from flaskapp_face import app, USER_IMG_DIR
 from flaskapp_face.face_outline import find_face
-from flaskapp_face import app
+
+
+@app.route('/face/<img_file_name>')
+def route_user_face(img_file_name):
+    secured_file_name = secure_filename(img_file_name)
+    user_file_path = os.path.join(os.path.dirname(__file__), 'user_imgs', secured_file_name)
+    if not os.path.exists(user_file_path):
+        return abort(404)
+
+    return send_file(user_file_path)
 
 
 @app.route('/face/main')
@@ -20,7 +31,6 @@ def img_request():
     if img_dict['image'].filename == '':
         return abort(400)
 
-    STATIC_DIR = os.path.join(os.path.dirname(__file__), 'static')
     img_io = io.BytesIO(img_dict['image'].read())
     img: Image.Image = Image.open(img_io)
 
@@ -32,7 +42,7 @@ def img_request():
             img = img.resize(size=(int(img.width * threshold_size / img.height), threshold_size))
 
     unique_dummy_name = str(uuid4())
-    img.save(os.path.join(STATIC_DIR, f'{unique_dummy_name}.jpg'))
+    img.save(os.path.join(USER_IMG_DIR, f'{unique_dummy_name}.jpg'))
 
     uuid_filenames = find_face(unique_dummy_name)
     return render_template('img_show.html', uuid_filenames=uuid_filenames)
