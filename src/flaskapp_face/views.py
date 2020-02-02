@@ -4,8 +4,8 @@ from uuid import uuid4
 from flask import render_template, request, abort, send_file
 from werkzeug.utils import secure_filename
 from PIL import Image
-from flaskapp_face.face_outline import find_face
 from flaskapp_face import app, USER_IMG_DIR
+from flaskapp_face.face_outline import find_face
 
 
 @app.route('/face/<img_file_name>')
