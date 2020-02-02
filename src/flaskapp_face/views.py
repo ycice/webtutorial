@@ -23,6 +23,14 @@ def img_request():
     STATIC_DIR = os.path.join(os.path.dirname(__file__), 'static')
     img_io = io.BytesIO(img_dict['image'].read())
     img: Image.Image = Image.open(img_io)
+
+    threshold_size = 1200
+    if max(img.width, img.height) > threshold_size:
+        if img.width > img.height:
+            img = img.resize(size=(threshold_size, int(img.height * threshold_size / img.width)))
+        else:
+            img = img.resize(size=(int(img.width * threshold_size / img.height), threshold_size))
+
     unique_dummy_name = str(uuid4())
     img.save(os.path.join(STATIC_DIR, f'{unique_dummy_name}.jpg'))
 
