@@ -17,20 +17,20 @@
         <form method="POST" action="/face/tag_name">
             <div class="col-12" style="font-size: 3em;">이름을 입력하세요(이름을 모르면 비워두세요)</div>
             {% for person in your_face_info_list %}
-            <div class="col-3">
-                <img src="/face/face_{{ person['file_name'] }}.jpg" style="width: 220px;"/>
-            </div>
-            <div class="col-3">
-                <div class="form-group">
-                    <label for="input_name"></label>
-                    <input type="text" class="form-control" id="input_name"
-                           name="name_{{person['order']}}">
+                <div class="col-3">
+                    <img src="/face/face_{{ person['file_name'] }}.jpg" style="width: 220px;"/>
+                    {# views에서 falsk로 사진 경로 다시 불러옴 #}
                 </div>
-            </div>
-            <div class="col-6"></div>
-            <input type="hidden" value="{{ person['shape'] }}" name="shape_{{person['order']}}"  readonly>
+                <div class="col-3">
+                    <div class="form-group">
+                        <label for="input_name"></label>
+                        <input type="text" class="form-control" id="input_name"
+                               name="name_{{person['order']}}">
+                    </div>
+                </div>
+                <div class="col-6"></div>
             {% endfor %}
-            <input type="hidden" value="{{ unique_dummy_name }}" name="unique_dummy_name">
+
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
