@@ -40,7 +40,6 @@ def get_bus_list():
         for i in range(len(stops_soup)):
             stop_info = stops_soup[i].text.split()
             bus['bus_stop'].append(stop_info)
-        print(1)
     return bus_list
 
 

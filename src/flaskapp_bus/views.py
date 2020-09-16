@@ -12,6 +12,7 @@ def route_bus(num: str):
             return render_template('bus.html', Bus_stop_list=bus['bus_stop'])
 
 
+@app.route('/')
 @app.route('/bus_search')
 def bus_search():
     return render_template('bus_search.html')

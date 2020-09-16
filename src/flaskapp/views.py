@@ -1,10 +1,9 @@
-import io  # 경로가 없는 파일을 처리할 때 open과 같은 역할을 한다
+import io
 import os
 from PIL import Image
 from flask import render_template, abort, jsonify, request, redirect, send_file
-# redirect는 다른 페이지로 돌려줌. request는 서버로 보내진 정보를 읽게 도와줌.
 from werkzeug.utils import secure_filename
-from flaskapp import app  # __init__안에 있어서 import할 때 그냥 app으로 함
+from flaskapp import app
 from flaskapp.menus import STARBUCKS_MEUS
 
 
@@ -17,7 +16,6 @@ def route_foundry():
 @app.route('/drinks')
 def route_drinks():
     return render_template('drinks.html', STARBUCKS_MEUS=STARBUCKS_MEUS)
-    # 스타벅스 메뉴를 html에서 사용가능하게 해줌
 
 
 @app.route('/drinks/<int:drink_id>')  # 정수를 뒤에 받겠다는 의미. < >는 변수취급 하겠다는 의미
@@ -137,3 +135,8 @@ def error_400(e):
         return f"사용자 오류입니다.<BR/>{e.description['message']}", 400
     else:
         return "사용자 오류입니다", 400
+
+
+@app.route('/pep')
+def route_pep():
+    return render_template('pep_test.html')
