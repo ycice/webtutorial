@@ -7,12 +7,12 @@ from flaskapp import app
 from flaskapp.menus import STARBUCKS_MEUS
 
 
-@app.route('/')
-@app.route('/foundry')  # 두개 붙여쓰면 둘 중 어떤걸 해도 아래의 결과가 나옴
+@app.route('/foundry')
 def route_foundry():
     return render_template('foundry.html')  # templates폴더 안에 있는건 import 없이 사용 가능
 
 
+@app.route('/')
 @app.route('/drinks')
 def route_drinks():
     return render_template('drinks.html', STARBUCKS_MEUS=STARBUCKS_MEUS)
@@ -136,7 +136,3 @@ def error_400(e):
     else:
         return "사용자 오류입니다", 400
 
-
-@app.route('/pep')
-def route_pep():
-    return render_template('pep_test.html')
