@@ -15,10 +15,10 @@
 
 <body>
 <div></div>
-<div class="container_fluid">
-    <div class="row">
-        <div class="col-12">
-            <form method="post" action="/bus/detail">
+<form method="post" action="/bus/detail">
+    <div class="container">
+        <div class="row">
+            <div class="col-3">
                 <label for="input_bus_id">버스 번호</label>
                 <select id="input_bus_id" name="bus_num" class="form-control">
                     <option>101</option>
@@ -27,11 +27,16 @@
                     <option>1009</option>
                     <option>9007</option>
                 </select>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
+            </div>
+            <div class="col-1">
+                <button type="submit" class="btn btn-primary" style="margin-top: 31px;">검색</button>
+            </div>
+            <div class="col">
+
+            </div>
         </div>
     </div>
-</div>
+</form>
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
