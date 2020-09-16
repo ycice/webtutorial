@@ -18,6 +18,7 @@ def route_user_face(img_file_name):
     return send_file(user_file_path)  # 원하는 사진(또는 파일?)을 리턴함
 
 
+@app.route('/')
 @app.route('/face/main')
 def img_upload():
     return render_template('img_upload.html')
